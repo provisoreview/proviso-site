@@ -105,6 +105,26 @@ section{padding:100px 48px;}
 .plan-cta-solid:hover{background:var(--amber2);}
 .nonprofit-note{text-align:center;margin-top:28px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--stone);text-transform:uppercase;}
 .nonprofit-note span{color:var(--amber);}
+/* coming-soon bullets */
+.plan-features li.soon{opacity:0.5;}
+.plan-features li.soon::before{color:var(--stone);}
+.plan.featured .plan-features li.soon::before{color:rgba(245,239,228,0.4);}
+.soon-badge{display:inline-block;margin-left:8px;font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone);border:1px solid rgba(27,42,59,0.22);border-radius:3px;padding:2px 6px;vertical-align:middle;white-space:nowrap;}
+.plan.featured .soon-badge{color:rgba(245,239,228,0.55);border-color:rgba(255,255,255,0.22);}
+/* founding-rate line */
+.founding-note{text-align:center;margin-top:28px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--stone);}
+/* enterprise band */
+.enterprise{margin-top:2px;background:var(--navy);color:var(--ivory);padding:44px 44px;}
+.enterprise-head{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;}
+.enterprise-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block;}
+.enterprise-price{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:var(--ivory);line-height:1;margin-bottom:14px;}
+.enterprise-price span{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(245,239,228,0.45);letter-spacing:0.08em;}
+.enterprise-blurb{font-size:15px;line-height:1.7;color:rgba(245,239,228,0.6);max-width:560px;}
+.enterprise-cta{flex-shrink:0;background:var(--amber);color:var(--navy);font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:16px 32px;text-decoration:none;transition:background 0.2s;white-space:nowrap;}
+.enterprise-cta:hover{background:var(--amber2);}
+.enterprise-includes{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:10px 28px;margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);}
+.enterprise-includes li{font-size:14px;line-height:1.5;color:rgba(245,239,228,0.7);padding-left:18px;position:relative;}
+.enterprise-includes li::before{content:'—';position:absolute;left:0;color:var(--amber);font-family:'IBM Plex Mono',monospace;}
 
 /* ── TESTIMONIAL ── */
 .testimonial{background:var(--navy3);padding:100px 48px;}
@@ -147,6 +167,9 @@ footer{background:var(--navy3);padding:60px 48px;border-top:1px solid rgba(255,2
   .steps{grid-template-columns:1fr;}
   .flags-grid{grid-template-columns:1fr;}
   .pricing-grid{grid-template-columns:1fr;}
+  .enterprise-head{flex-direction:column;}
+  .enterprise-cta{width:100%;text-align:center;}
+  .enterprise-includes{grid-template-columns:1fr;}
   .footer-inner{flex-direction:column;}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
 }
@@ -291,33 +314,52 @@ footer{background:var(--navy3);padding:60px 48px;border-top:1px solid rgba(255,2
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li>25 invoices per month</li>
-          <li>Custom billing guidelines upload</li>
-          <li>Benchmarked rates by market</li>
-          <li>Slack / email digest</li>
           <li>Priority support</li>
+          <li class="soon">Custom billing guidelines upload<span class="soon-badge">Coming soon</span></li>
+          <li class="soon">Benchmarked rates by market<span class="soon-badge">Coming soon</span></li>
+          <li class="soon">Slack / email digest<span class="soon-badge">Coming soon</span></li>
         </ul>
         <a href="https://app.provisoreview.com/login" class="plan-cta plan-cta-solid">Get Started</a>
       </div>
       <div class="plan">
         <span class="plan-badge">For Fractional GCs</span>
         <div class="plan-name">Firm</div>
-        <div class="plan-price">$499</div>
+        <div class="plan-price">$699</div>
         <div class="plan-period">per month</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
-          <li>Unlimited invoices</li>
-          <li>Multiple matters with budgets</li>
-          <li>API for QBO / Bill.com</li>
-          <li>White-label reports</li>
+          <li>100 invoices per month</li>
           <li>Pays for itself on the first matter</li>
+          <li class="soon">Multiple matters with budgets<span class="soon-badge">Coming soon</span></li>
+          <li class="soon">API for QBO / Bill.com<span class="soon-badge">Coming soon</span></li>
+          <li class="soon">White-label reports<span class="soon-badge">Coming soon</span></li>
         </ul>
         <a href="https://app.provisoreview.com/login" class="plan-cta plan-cta-outline">Get Started</a>
       </div>
     </div>
+    <p class="founding-note">Founding rate — early customers lock in today's pricing as new features ship.</p>
+    <div class="enterprise">
+      <div class="enterprise-head">
+        <div>
+          <span class="enterprise-eyebrow">White-label</span>
+          <div class="enterprise-price">Starting at $999<span>/mo</span></div>
+          <p class="enterprise-blurb">For fractional-GC firms and legal-ops teams running Proviso across a full client book under their own brand.</p>
+        </div>
+        <a href="mailto:guy@provisoreview.com?subject=Enterprise%20%2F%20White-label%20inquiry" class="enterprise-cta">Contact us</a>
+      </div>
+      <ul class="enterprise-includes">
+        <li>Everything in Firm</li>
+        <li>Custom white-label &amp; reseller</li>
+        <li>Multiple seats / team access</li>
+        <li>SSO</li>
+        <li>Dedicated onboarding + SLA</li>
+        <li>Custom rule sets</li>
+      </ul>
+    </div>
     <div style="margin-top:28px;border:1px solid rgba(27,42,59,0.12);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--ivory2);">
       <div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);margin-bottom:6px;">501(c)(3) Nonprofit Pricing</div>
-        <div style="font-size:14px;line-height:1.6;color:var(--stone2);">Nonprofits deserve oversight over their legal spend too. We offer <strong>25% off all tiers</strong> for verified 501(c)(3) organizations — Starter $59 · Business $149 · Firm $374.</div>
+        <div style="font-size:14px;line-height:1.6;color:var(--stone2);">Nonprofits deserve oversight over their legal spend too. We offer <strong>25% off all tiers</strong> for verified 501(c)(3) organizations — Starter $59 · Business $149 · Firm $524.</div>
       </div>
       <a href="mailto:nonprofits@provisoreview.com" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;background:var(--green);color:#fff;padding:14px 22px;text-decoration:none;white-space:nowrap;flex-shrink:0;">Apply for Nonprofit Rate</a>
     </div>
