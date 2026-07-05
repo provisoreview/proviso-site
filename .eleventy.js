@@ -4,6 +4,7 @@ module.exports = function (eleventyConfig) {
   // Pass the homepage straight through, untouched
   eleventyConfig.addPassthroughCopy("index.html");
   eleventyConfig.addPassthroughCopy("robots.txt");
+  eleventyConfig.addPassthroughCopy("assets");
 
   // Strip everything from "# SOCIAL POSTS" onward before render
   eleventyConfig.addFilter("stripSocial", (content) => {
