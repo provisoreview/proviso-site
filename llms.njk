@@ -1,0 +1,26 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# Proviso Review
+
+> Proviso Review is legal bill review software for businesses without an in-house legal department. Upload a law firm invoice and it flags block billing, vague narratives, above-market rates, duplicate entries, and billing-guideline violations — then generates a plain-language report and a ready-to-send reduction request. The first audit is free, with no signup required.
+
+Proviso Review is built for the people who pay outside counsel but have no in-house lawyers to check the bills: business owners, founders, fractional general counsel, and nonprofits. Pricing is flat and published, with no "contact sales" required: Starter is $79 one-time (10 invoices, valid one year), Business is $199/month (25 invoices/month), and Firm is $699/month (100 invoices/month). Verified 501(c)(3) nonprofits receive 25% off any tier.
+
+## Learning Center
+
+Plain-language guides to reading, questioning, and reducing legal bills, written for business owners without in-house counsel.
+{%- for article in collections.articles %}
+- [{{ article.data.title | safe }}](https://provisoreview.com{{ article.url }}): {{ article.data.metaDescription | safe }}
+{%- endfor %}
+
+## Key pages
+
+- [Proviso Review — homepage](https://provisoreview.com/): Automated legal bill review for companies without a legal department. Flags block billing, vague entries, and above-market rates; returns a branded report and reduction-request email.
+- [Learning Center](https://provisoreview.com/learning-center/): All guides, grouped by topic (Problems, Cost, Comparisons, Best Of, Reviews).
+
+## Contact
+
+- Email: guy@provisoreview.com
+- Based in Dallas, Texas
