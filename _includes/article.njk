@@ -1,0 +1,111 @@
+---
+layout: base.njk
+---
+{#
+  Article frontmatter schema (set these in each learning-center/articles/*.md):
+  ---
+  layout: article.njk
+  title: ""                # <title> + OG title
+  metaDescription: ""      # meta description + OG description
+  slug: ""                 # drives permalink /learning-center/{{ slug }}/
+  h1: ""                   # visible headline (may contain <em>)
+  primaryKeyword: ""
+  secondaryKeywords: []
+  searchIntent: ""
+  pillar: ""               # Problems | Cost | Comparisons | Best Of | Reviews
+  number: 0                # order within pillar
+  targetWordCount: 0
+  internalLinks: []
+  ogImage: "/assets/og/default.png"   # placeholder until real OG images exist
+  author: "Guy Zimmerer, Founder, Proviso Review"
+  datePublished:
+  dateModified:
+  faq: []                  # [{q: "", a: ""}]
+  permalink: "/learning-center/{{ slug }}/"
+  ---
+#}
+<article class="article-shell">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ (h1 or title) | dump | safe }},
+  "description": {{ metaDescription | dump | safe }},
+  "author": {"@type": "Person", "name": {{ author | dump | safe }}},
+  "datePublished": {{ (datePublished | isoDate) | dump | safe }},
+  "dateModified": {{ (dateModified | isoDate) | dump | safe }},
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://provisoreview.com{{ page.url }}"},
+  "publisher": {"@type": "Organization", "name": "Proviso Review", "url": "https://provisoreview.com/"}
+}
+</script>
+{%- if faq.length %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+  {%- for item in faq %}
+    {"@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": {"@type": "Answer", "text": {{ item.a | dump | safe }}}}{% if not loop.last %},{% endif %}
+  {%- endfor %}
+  ]
+}
+</script>
+{%- endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Learning Center", "item": "https://provisoreview.com/learning-center/"},
+    {"@type": "ListItem", "position": 2, "name": {{ title | dump | safe }}, "item": "https://provisoreview.com{{ page.url }}"}
+  ]
+}
+</script>
+
+  <header class="article-header">
+    <div class="article-header-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span><a href="/learning-center/">Learning Center</a><span class="sep">/</span>{{ pillar }}
+      </nav>
+      <h1 class="article-h1">{{ h1 | safe if h1 else title }}</h1>
+      <div class="article-meta">
+        <span>By {{ author }}</span>
+        <span class="sep">·</span>
+        <span>{{ datePublished | displayDate }}</span>
+        <span class="sep">·</span>
+        <span>{{ content | readingTime }}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="article-body-wrap">
+    <div class="article-body">
+      {{ content | safe }}
+    </div>
+  </div>
+
+  {%- if faq.length %}
+  <section class="faq-section">
+    <div class="faq-inner">
+      <p class="faq-eyebrow">Common questions</p>
+      <h2 class="faq-title">Frequently asked</h2>
+      {%- for item in faq %}
+      <div class="faq-item">
+        <div class="faq-q">{{ item.q }}</div>
+        <div class="faq-a">{{ item.a }}</div>
+      </div>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
+  <section class="cta-section">
+    <div class="section-inner" style="max-width:700px;margin:0 auto;">
+      <h2 class="section-title">Stop paying invoices <em>you haven't reviewed.</em></h2>
+      <p class="cta-sub">Run your first audit free. No signup, no card.</p>
+      <a href="https://app.provisoreview.com/demo" class="btn-dark">Run a free audit</a>
+    </div>
+  </section>
+
+</article>

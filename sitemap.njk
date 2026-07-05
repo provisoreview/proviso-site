@@ -1,0 +1,15 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://provisoreview.com/</loc></url>
+  <url><loc>https://provisoreview.com/learning-center/</loc></url>
+  {%- for article in collections.articles %}
+  <url>
+    <loc>https://provisoreview.com{{ article.url }}</loc>
+    <lastmod>{{ article.data.dateModified | isoDate }}</lastmod>
+  </url>
+  {%- endfor %}
+</urlset>

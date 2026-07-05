@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ title }}</title>
+{% if metaDescription %}<meta name="description" content="{{ metaDescription }}"/>{% endif %}
+<link rel="canonical" href="https://provisoreview.com{{ page.url }}"/>
+
+<!-- Open Graph / social -->
+<meta property="og:title" content="{{ title }}"/>
+{% if metaDescription %}<meta property="og:description" content="{{ metaDescription }}"/>{% endif %}
+<meta property="og:type" content="{% if pillar %}article{% else %}website{% endif %}"/>
+<meta property="og:url" content="https://provisoreview.com{{ page.url }}"/>
+<meta name="twitter:card" content="summary_large_image"/>
+{# og:image intentionally omitted until brand OG assets are exported — see follow-up. #}
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy:   #1B2A3B;
+  --navy2:  #243447;
+  --navy3:  #0f1d2b;
+  --ivory:  #F5EFE4;
+  --ivory2: #EDE5D6;
+  --amber:  #C8851A;
+  --amber2: #d9911e;
+  --green:  #2D6A4F;
+  --stone:  #8C8279;
+  --stone2: #6b6159;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--ivory);color:var(--navy);font-family:'Lora',Georgia,serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,29,43,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;color:var(--ivory);letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;}
+.nav-logo .pipe{color:var(--amber);font-weight:300;margin:0 5px;font-size:26px;vertical-align:middle;line-height:1;}
+.nav-logo .right{color:var(--amber);}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--ivory);}
+.nav-active{color:var(--amber)!important;border-bottom:1px solid var(--amber);padding-bottom:2px;}
+.nav-cta{background:var(--amber)!important;color:var(--navy)!important;padding:9px 22px!important;font-weight:600!important;letter-spacing:0.1em!important;transition:background 0.2s!important;}
+.nav-cta:hover{background:var(--amber2)!important;}
+
+/* ── SECTION BASE ── */
+section{padding:100px 48px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:600;line-height:1.12;color:var(--navy);margin-bottom:24px;}
+.section-title em{font-style:italic;color:var(--amber);}
+.section-body{font-size:17px;line-height:1.75;color:var(--stone2);max-width:580px;}
+
+/* ── CTA ── */
+.cta-section{background:var(--amber);padding:100px 48px;text-align:center;}
+.cta-section .section-title{color:var(--navy);margin-bottom:16px;}
+.cta-section .section-title em{color:var(--navy3);}
+.cta-sub{font-size:17px;color:rgba(27,42,59,0.7);margin-bottom:40px;font-family:'Lora',serif;}
+.btn-dark{background:var(--navy);color:var(--ivory);font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:18px 44px;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.15s;}
+.btn-dark:hover{background:var(--navy2);transform:translateY(-1px);}
+
+/* ── FOOTER ── */
+footer{background:var(--navy3);padding:60px 48px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;color:var(--ivory);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;text-decoration:none;display:inline-block;}
+.footer-logo .pipe{color:var(--amber);font-weight:300;margin:0 4px;font-size:24px;}
+.footer-logo .right{color:var(--amber);}
+.footer-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone);}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--ivory);}
+.footer-bottom{max-width:1100px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;color:rgba(140,130,121,0.5);text-transform:uppercase;}
+
+/* ── LEARNING CENTER — HUB ── */
+.lc-hero{background:var(--navy3);padding:150px 48px 80px;position:relative;overflow:hidden;}
+.lc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 40%,rgba(200,133,26,0.08) 0%,transparent 70%);}
+.lc-hero::after{content:'';position:absolute;top:64px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,133,26,0.4),transparent);}
+.lc-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.lc-hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber);margin-bottom:24px;}
+.lc-hero-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,5vw,68px);line-height:1.1;color:var(--ivory);margin-bottom:24px;}
+.lc-hero-title em{font-style:italic;color:var(--amber);}
+.lc-hero-sub{font-family:'Lora',serif;font-size:18px;line-height:1.7;color:rgba(245,239,228,0.65);max-width:600px;}
+.pillar-section{padding:56px 48px;}
+.pillar-inner{max-width:1100px;margin:0 auto;}
+.pillar-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.article-card{background:#fff;border:0.5px solid rgba(27,42,59,0.12);border-left:3px solid transparent;padding:28px 30px;display:flex;flex-direction:column;text-decoration:none;transition:border-left-color 0.2s,transform 0.15s;min-height:180px;}
+.article-card:hover{border-left-color:var(--amber);transform:translateY(-1px);}
+.article-card.featured{border-left-color:var(--amber);}
+.article-card .card-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+.article-card .card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy);line-height:1.25;margin-bottom:12px;}
+.article-card .card-desc{font-size:14px;line-height:1.6;color:var(--stone2);flex-grow:1;}
+.article-card .card-read{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-top:18px;}
+.card-filler{border:0.5px dashed rgba(27,42,59,0.22);padding:28px 30px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);min-height:180px;}
+
+/* ── LEARNING CENTER — ARTICLE ── */
+.article-shell{background:var(--ivory);}
+.article-header{background:var(--navy3);padding:130px 48px 64px;position:relative;overflow:hidden;}
+.article-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 40%,rgba(200,133,26,0.08) 0%,transparent 70%);}
+.article-header-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:28px;}
+.breadcrumb a{color:var(--stone);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--amber);}
+.breadcrumb .sep{color:rgba(140,130,121,0.5);margin:0 8px;}
+.article-h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,56px);line-height:1.12;color:var(--ivory);margin-bottom:24px;}
+.article-h1 em{font-style:italic;color:var(--amber);}
+.article-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.article-meta .sep{color:rgba(140,130,121,0.5);}
+.article-body-wrap{max-width:760px;margin:0 auto;padding:64px 48px 80px;}
+.article-body{font-family:'Lora',serif;font-size:18px;line-height:1.8;color:var(--navy2);}
+.article-body p{margin-bottom:24px;}
+.article-body h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,38px);font-weight:600;color:var(--navy);line-height:1.2;margin:48px 0 20px;}
+.article-body h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--navy);line-height:1.25;margin:36px 0 16px;}
+.article-body ul,.article-body ol{margin:0 0 24px 24px;}
+.article-body li{margin-bottom:10px;line-height:1.75;}
+.article-body a{color:var(--amber2);text-decoration:underline;text-underline-offset:2px;transition:color 0.2s;}
+.article-body a:hover{color:var(--amber);}
+.article-body strong{color:var(--navy);font-weight:600;}
+.article-body em{font-style:italic;}
+/* Non-TL;DR blockquotes */
+.article-body blockquote{border-left:3px solid var(--amber);padding:4px 0 4px 24px;margin:0 0 24px;font-style:italic;color:var(--stone2);}
+/* First blockquote → TL;DR card */
+.article-body > blockquote:first-of-type{border-left:none;background:var(--navy);color:var(--ivory);padding:32px 36px;margin:0 0 48px;font-style:normal;position:relative;}
+.article-body > blockquote:first-of-type::before{content:'TL;DR';display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.24em;color:var(--amber);margin-bottom:14px;}
+.article-body > blockquote:first-of-type p{color:rgba(245,239,228,0.85);margin-bottom:12px;font-size:17px;line-height:1.7;}
+.article-body > blockquote:first-of-type p:last-child{margin-bottom:0;}
+
+/* ── FAQ ── */
+.faq-section{background:var(--ivory2);padding:80px 48px;}
+.faq-inner{max-width:760px;margin:0 auto;}
+.faq-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+.faq-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);font-weight:600;color:var(--navy);margin-bottom:40px;}
+.faq-item{border-top:1px solid rgba(27,42,59,0.12);padding:28px 0;}
+.faq-item:last-child{border-bottom:1px solid rgba(27,42,59,0.12);}
+.faq-q{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.3;}
+.faq-a{font-family:'Lora',serif;font-size:16px;line-height:1.75;color:var(--stone2);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  section{padding:72px 24px;}
+  .lc-hero{padding:120px 24px 60px;}
+  .pillar-section{padding:56px 24px;}
+  .card-grid{grid-template-columns:1fr;}
+  .article-header{padding:110px 24px 48px;}
+  .article-body-wrap{padding:48px 24px 64px;}
+  .faq-section{padding:56px 24px;}
+  .cta-section{padding:72px 24px;}
+  .footer-inner{flex-direction:column;}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">PROVISO <span class="pipe">|</span><span class="right">REVIEW</span></a>
+  <div class="nav-links">
+    <a href="/#how">How it works</a>
+    <a href="/#flags">What we flag</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/learning-center/"{% if "/learning-center" in page.url %} class="nav-active"{% endif %}>Learning Center</a>
+    <a href="https://app.provisoreview.com/login">Sign in</a>
+    <a href="https://app.provisoreview.com/demo" class="nav-cta">Run a free audit</a>
+  </div>
+</nav>
+
+{{ content | safe }}
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="/" class="footer-logo">PROVISO <span class="pipe">|</span><span class="right">REVIEW</span></a>
+      <div class="footer-tag">Legal bill review — automated</div>
+    </div>
+    <div class="footer-links">
+      <a href="/#how">How it works</a>
+      <a href="/#flags">What we flag</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/learning-center/">Learning Center</a>
+      <a href="mailto:guy@provisoreview.com">Contact</a>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:nonprofits@provisoreview.com">Nonprofit pricing</a>
+      <a href="https://app.provisoreview.com/demo">Free demo</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Proviso Review LLC · Dallas, Texas</div>
+    <div class="footer-copy">provisoreview.com</div>
+  </div>
+</footer>
+
+</body>
+</html>

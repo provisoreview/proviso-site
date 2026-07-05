@@ -1,0 +1,39 @@
+---
+layout: base.njk
+permalink: "/learning-center/"
+title: "Learning Center — Proviso Review"
+metaDescription: "Plain-language guides to legal billing, written for business owners without in-house counsel."
+---
+<div class="lc-hero">
+  <div class="lc-hero-inner">
+    <p class="lc-hero-eyebrow">Learning Center</p>
+    <h1 class="lc-hero-title"><em>Understand</em> your legal bills.</h1>
+    <p class="lc-hero-sub">Plain-language guides to legal billing — written for business owners, not legal ops departments.</p>
+  </div>
+</div>
+
+{%- set pillars = ["Problems", "Cost", "Comparisons", "Best Of", "Reviews"] %}
+
+{%- for pillar in pillars %}
+{%- set items = collections.articles | byPillar(pillar) %}
+{%- if items.length %}
+<section class="pillar-section">
+  <div class="pillar-inner">
+    <p class="pillar-eyebrow">{{ pillar }}</p>
+    <div class="card-grid">
+      {%- for article in items %}
+      <a class="article-card{% if article.data.featured %} featured{% endif %}" href="{{ article.url }}">
+        <span class="card-num">{{ pillar | upper }} — {{ "0" if article.data.number < 10 }}{{ article.data.number }}</span>
+        <span class="card-title">{{ article.data.title }}</span>
+        <span class="card-desc">{{ article.data.metaDescription }}</span>
+        <span class="card-read">{{ article.templateContent | readingTime }}</span>
+      </a>
+      {%- endfor %}
+      {%- if items.length % 2 == 1 %}
+      <div class="card-filler">More articles as they publish</div>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+{%- endfor %}
