@@ -23,7 +23,7 @@ metaDescription: "Plain-language guides to legal billing, written for business o
     <div class="card-grid">
       {%- for article in items %}
       <a class="article-card{% if article.data.featured %} featured{% endif %}" href="{{ article.url }}">
-        <span class="card-num">{{ pillar | upper }} — {{ "0" if article.data.number < 10 }}{{ article.data.number }}</span>
+        <span class="card-num">{{ pillar | upper }}</span>
         <span class="card-title">{{ article.data.title }}</span>
         <span class="card-desc">{{ article.data.metaDescription }}</span>
         <span class="card-read">{{ article.templateContent | readingTime }}</span>
