@@ -174,7 +174,7 @@ footer{background:var(--navy3);padding:60px 48px;border-top:1px solid rgba(255,2
     <a href="/#pricing">Pricing</a>
     <a href="/learning-center/"{% if "/learning-center" in page.url %} class="nav-active"{% endif %}>Learning Center</a>
     <a href="https://app.provisoreview.com/login">Sign in</a>
-    <a href="https://app.provisoreview.com/demo" class="nav-cta">Run a free audit</a>
+    <a href="https://app.provisoreview.com/demo?ref=lc-nav&src={{ page.url | slugify }}" class="nav-cta">Run a free audit</a>
   </div>
 </nav>
 
@@ -196,7 +196,7 @@ footer{background:var(--navy3);padding:60px 48px;border-top:1px solid rgba(255,2
     </div>
     <div class="footer-links">
       <a href="mailto:nonprofits@provisoreview.com">Nonprofit pricing</a>
-      <a href="https://app.provisoreview.com/demo">Free demo</a>
+      <a href="https://app.provisoreview.com/demo?ref=lc-footer&src={{ page.url | slugify }}">Free demo</a>
     </div>
   </div>
   <div class="footer-bottom">
