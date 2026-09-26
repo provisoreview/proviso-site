@@ -1,0 +1,11 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "proviso-site.vercel.app" }],
+      "destination": "https://provisoreview.com/:path*",
+      "permanent": true
+    }
+  ]
+}
