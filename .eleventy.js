@@ -4,6 +4,8 @@ module.exports = function (eleventyConfig) {
   // Pass the homepage straight through, untouched
   eleventyConfig.addPassthroughCopy("index.html");
   eleventyConfig.addPassthroughCopy("robots.txt");
+  // IndexNow ownership key (see scripts/indexnow.js)
+  eleventyConfig.addPassthroughCopy("b0c0a93db5c2f2c7e3ec82f1d858f982.txt");
   eleventyConfig.addPassthroughCopy("assets");
 
   // Strip everything from "# SOCIAL POSTS" onward before render
